@@ -1,0 +1,13 @@
+:root {
+  --bg: #2b2e31;
+  --primaryTextColor: #fff;
+  --secondaryTextColor: #cdcdcd;
+  --tertiaryTextColor: #757575;
+  --quaternaryTextColor: #4a4a4a;
+  --navPercentage: 5%;
+  --navHeight: 70px;
+  --primaryColor: #ff0000ff;
+  --hamburgerTransitionTime: 0.6s;
+  --modalColor: #323232;
+  --footerColor: #1c1c1c;
+}
