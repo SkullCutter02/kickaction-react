@@ -43,10 +43,7 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        <Hamburger
-          isMobileNavActive={isMobileNavActive}
-          setIsMobileNavActive={setIsMobileNavActive}
-        />
+        <Hamburger isMobileNavActive={isMobileNavActive} setIsMobileNavActive={setIsMobileNavActive} />
 
         <div
           className={`mobile-nav${isMobileNavActive ? " enabled" : ""}`}
@@ -163,7 +160,7 @@ const Navbar: React.FC = () => {
           left: 0;
           width: 100vw;
           height: 100vh;
-          display: flex;
+          display: none;
           justify-content: center;
           align-items: center;
           opacity: 0;
@@ -215,6 +212,10 @@ const Navbar: React.FC = () => {
         @media screen and (max-width: 950px) {
           #nav-content {
             display: none;
+          }
+
+          .mobile-nav {
+            display: flex;
           }
         }
       `}</style>
