@@ -1,4 +1,4 @@
-const members = [
+const members: Member[] = [
   {
     id: 1,
     name: "Justin Kim",

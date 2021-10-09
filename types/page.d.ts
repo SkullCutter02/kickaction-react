@@ -1,0 +1,5 @@
+interface Page {
+  id: number;
+  slug: string;
+  name: string;
+}

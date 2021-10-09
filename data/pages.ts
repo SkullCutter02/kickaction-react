@@ -1,4 +1,4 @@
-const pages = [
+const pages: Page[] = [
   {
     id: 1,
     slug: "/",
