@@ -1,4 +1,4 @@
-const sdgs: Sdg[] = [
+const sdgs: ISdg[] = [
   {
     number: 3,
     description:

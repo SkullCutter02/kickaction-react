@@ -1,4 +1,4 @@
-interface Sdg {
+interface ISdg {
   number: number;
   description: string;
 }

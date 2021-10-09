@@ -1,5 +1,6 @@
 import React from "react";
 
+import Member from "./Member";
 import members from "../../../data/members";
 
 const Members: React.FC = () => {
@@ -7,23 +8,7 @@ const Members: React.FC = () => {
     <>
       <div className="members">
         {members.map((member) => (
-          <div className="member" id="member-${member.id}" key={member.id}>
-            <div className="member-ratio">
-              <svg viewBox="0 0 1 1" />
-              <div className="member-image">
-                <img
-                  src={`/members/member_${member.id}.png`}
-                  alt={member.name}
-                  style={{ objectPosition: member.imageOffsetHome ? member.imageOffsetHome : "initial" }}
-                />
-                <div className="member-overlay">
-                  <p className="view-profile">View Profile</p>
-                </div>
-              </div>
-            </div>
-            <h1 className="member-name">{member.name}</h1>
-            <p className="member-position">{member.role}</p>
-          </div>
+          <Member member={member} key={member.id} />
         ))}
       </div>
 
@@ -35,80 +20,6 @@ const Members: React.FC = () => {
           grid-template-columns: repeat(4, 1fr);
           grid-row-gap: 70px;
           grid-column-gap: 90px;
-        }
-
-        .members * {
-          text-align: center;
-        }
-
-        .member {
-          cursor: pointer;
-          width: 100%;
-        }
-
-        .member-ratio {
-          display: grid;
-          margin-bottom: 20px;
-        }
-
-        .member-ratio > * {
-          grid-area: 1 / 1;
-        }
-
-        .member-image {
-          position: relative;
-          width: 100%;
-        }
-
-        .member img {
-          object-fit: cover;
-          border-radius: 50%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
-
-        .member-overlay {
-          border-radius: 50%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: rgba(0, 0, 0, 0.6);
-          width: 100%;
-          height: 100%;
-          opacity: 0;
-          cursor: pointer;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: opacity 0.2s;
-        }
-
-        .member-overlay:hover {
-          opacity: 100%;
-        }
-
-        .member-overlay:hover .view-profile {
-          transform: translateY(0);
-        }
-
-        .view-profile {
-          color: #fff;
-          font-family: Archivo, serif;
-          font-weight: 900;
-          text-transform: uppercase;
-          transform: translateY(20px);
-          transition: transform 0.2s;
-        }
-
-        .member-name {
-          margin-bottom: 10px;
-        }
-
-        .member-position {
-          color: var(--secondaryTextColor);
         }
 
         @media screen and (max-width: 1200px) {

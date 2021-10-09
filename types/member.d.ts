@@ -1,4 +1,4 @@
-interface Member {
+interface IMember {
   id: number;
   name: string;
   role: string;

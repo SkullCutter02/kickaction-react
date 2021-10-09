@@ -1,4 +1,4 @@
-interface Page {
+interface IPage {
   id: number;
   slug: string;
   name: string;
