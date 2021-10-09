@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Hamburger from "../widgets/Hamburger";
+import pages from "../../data/pages";
 
 const Navbar: React.FC = () => {
   const [currentTabValue, setCurrentTabValue] = useState<number>(1);
@@ -13,25 +14,13 @@ const Navbar: React.FC = () => {
   const router = useRouter();
   const path = router.asPath.split("/");
 
-  const closeNav = () => setIsMobileNavActive(false);
-
   useEffect(() => {
-    switch (path[1]) {
-      case "":
+    for (const page of pages) {
+      if (page.slug === "/") {
         setCurrentTabValue(1);
-        break;
-      case "about-us":
-        setCurrentTabValue(2);
-        break;
-      case "our-partners":
-        setCurrentTabValue(3);
-        break;
-      case "blog":
-        setCurrentTabValue(4);
-        break;
-      case "impact":
-        setCurrentTabValue(5);
-        break;
+      } else if (page.slug === path[1]) {
+        setCurrentTabValue(page.id);
+      }
     }
   }, [path]);
 
@@ -45,31 +34,13 @@ const Navbar: React.FC = () => {
           <h3>KickAction</h3>
         </div>
         <ul id="nav-content">
-          <li>
-            <Link href={"/"}>
-              <a className="tab tab-1">Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={"/about-us"}>
-              <a className="tab tab-2">About Us</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={"/our-partners"}>
-              <a className="tab tab-3">Our Partners</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={"/blog"}>
-              <a className="tab tab-4">Blog</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={"/impact"}>
-              <a className="tab tab-5">Impact</a>
-            </Link>
-          </li>
+          {pages.map((page) => (
+            <li key={page.id}>
+              <Link href={page.slug}>
+                <a className={`tab tab-${page.id}`}>{page.name}</a>
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <Hamburger
@@ -90,31 +61,13 @@ const Navbar: React.FC = () => {
             }}
           />
           <ul id="mobile-nav-content">
-            <li onClick={closeNav}>
-              <Link href={"/"}>
-                <a className="tab tab-1">Home</a>
-              </Link>
-            </li>
-            <li onClick={closeNav}>
-              <Link href={"/about-us"}>
-                <a className="tab tab-2">About Us</a>
-              </Link>
-            </li>
-            <li onClick={closeNav}>
-              <Link href={"/our-partners"}>
-                <a className="tab tab-3">Our Partners</a>
-              </Link>
-            </li>
-            <li onClick={closeNav}>
-              <Link href={"/blog"}>
-                <a className="tab tab-4">Blog</a>
-              </Link>
-            </li>
-            <li onClick={closeNav}>
-              <Link href={"/impact"}>
-                <a className="tab tab-5">Impact</a>
-              </Link>
-            </li>
+            {pages.map((page) => (
+              <li key={page.id} onClick={() => setIsMobileNavActive(false)}>
+                <Link href={page.slug}>
+                  <a className={`tab tab-${page.id}`}>{page.name}</a>
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </nav>
