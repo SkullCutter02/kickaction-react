@@ -24,3 +24,36 @@ ul {
 .disabled {
   display: none;
 }
+
+section.home {
+  width: 85%;
+  margin: 70px auto;
+}
+
+article h1 {
+  font-family: Archivo, serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+article p {
+  line-height: 1.5em;
+  margin-top: 20px;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+article img {
+  box-shadow: 10px 10px 20px 5px #1f1f1f;
+}
+
+@media screen and (max-width: 1100px) {
+  article h1 {
+    font-size: 1.7rem;
+  }
+
+  article p {
+    font-size: 1rem;
+  }
+}
