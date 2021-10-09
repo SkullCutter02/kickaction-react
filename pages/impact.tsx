@@ -1,7 +1,7 @@
 import React from "react";
 
 import Hero from "../components/ui/shared/Hero";
-import heroes from "../data/hero";
+import heroes from "../data/heroes";
 
 const ImpactPage: React.FC = () => {
   return (
