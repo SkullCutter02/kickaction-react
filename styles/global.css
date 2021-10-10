@@ -57,3 +57,25 @@ article img {
     font-size: 1rem;
   }
 }
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.4s;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+@media screen and (max-width: 700px) {
+  .ReactModal__Content {
+    width: 80% !important;
+  }
+}

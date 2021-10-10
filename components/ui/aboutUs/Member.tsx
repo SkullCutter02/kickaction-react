@@ -1,13 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-modal";
 
 interface Props {
   member: IMember;
 }
 
 const Member: React.FC<Props> = ({ member }) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   return (
     <>
-      <div className="member" id="member-${member.id}" key={member.id}>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        closeTimeoutMS={400}
+        style={{
+          content: {
+            transform: "translate(-50%, -50%)",
+            width: "60%",
+            height: "66%",
+            zIndex: 100000000000,
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            background: "var(--modalColor)",
+            border: "none",
+            cursor: "initial",
+          },
+          overlay: {
+            background: "rgba(0, 0, 0, 0.4)",
+            cursor: "pointer",
+          },
+        }}
+      >
+        <div className={`member-modal-content`}>
+          <img className="member-modal-content-img" src={`/members/member_${member.id}.png`} alt="hero" />
+          <div className="close-btn" onClick={() => setIsModalOpen(false)}>
+            +
+          </div>
+          <div className="member-modal-content-text">
+            <h1 className="member-modal-name">{member.name}</h1>
+            <p className="member-modal-role">{member.role}</p>
+            <span className="line" />
+            <p className="member-modal-description">{member.description}</p>
+          </div>
+        </div>
+      </Modal>
+
+      <div className="member" id={`member-${member.id}`} key={member.id} onClick={() => setIsModalOpen(true)}>
         <div className="member-ratio">
           <svg viewBox="0 0 1 1" />
           <div className="member-image">
@@ -128,6 +168,85 @@ const Member: React.FC<Props> = ({ member }) => {
 
           .member-position {
             font-size: 0.8rem;
+          }
+        }
+
+        /* modal */
+
+        .member-modal-content {
+          display: flex;
+        }
+
+        .member-modal-content * {
+          color: #fff;
+        }
+
+        .member-modal-content-img {
+          width: 40%;
+          object-fit: cover;
+        }
+
+        .member-modal-content-text {
+          width: 60%;
+          padding: 40px;
+          overflow-y: scroll;
+          scrollbar-base-color: var(--modalColor);
+          scrollbar-face-color: var(--modalColor);
+        }
+
+        .member-modal-name {
+          margin-bottom: 4px;
+          font-size: 2.7rem;
+        }
+
+        .member-modal-description {
+          line-height: 1.7em;
+        }
+
+        .member-modal-content-text .line {
+          display: block;
+          margin: 15px 0;
+          background: var(--primaryColor);
+          width: 100%;
+          min-width: 150px;
+          height: 2px;
+        }
+
+        .close-btn {
+          position: absolute;
+          top: 0;
+          right: 20px;
+          color: var(--primaryColor);
+          font-size: 50px;
+          transform: rotate(45deg);
+          cursor: pointer;
+        }
+
+        @media screen and (max-width: 1050px) {
+          .member-modal-name {
+            font-size: 2.3rem;
+          }
+
+          .member-modal-description {
+            font-size: 13px;
+          }
+        }
+
+        @media screen and (max-width: 800px) {
+          .member-modal-content {
+            flex-direction: column;
+            overflow-y: scroll;
+          }
+
+          .member-modal-content-img {
+            width: 100%;
+            max-height: 300px;
+          }
+
+          .member-modal-content-text {
+            font-size: 14px;
+            width: 100%;
+            overflow: scroll;
           }
         }
       `}</style>
