@@ -30,6 +30,23 @@ const OurMission: React.FC = () => {
           width: 100%;
           object-fit: contain;
         }
+
+        @media screen and (max-width: 1100px) {
+          .overview {
+            grid-column-gap: 35px;
+          }
+        }
+
+        @media screen and (max-width: 800px) {
+          .overview {
+            grid-template-columns: 1fr;
+          }
+
+          .overview img {
+            grid-row-start: 1;
+            margin: 50px auto;
+          }
+        }
       `}</style>
     </>
   );
