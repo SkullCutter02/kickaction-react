@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -8,8 +8,7 @@ import pages from "../../data/pages";
 const Navbar: React.FC = () => {
   const [currentTabValue, setCurrentTabValue] = useState<number>(1);
   const [isMobileNavActive, setIsMobileNavActive] = useState<boolean>(false);
-
-  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const [zIndex, setZIndex] = useState<-1 | 10000>(-1);
 
   const router = useRouter();
   const path = router.asPath.split("/");
@@ -23,6 +22,15 @@ const Navbar: React.FC = () => {
       }
     }
   }, [path]);
+
+  useEffect(() => {
+    if (isMobileNavActive) setZIndex(10000);
+    else {
+      setTimeout(() => {
+        setZIndex(-1);
+      }, 600);
+    }
+  }, [isMobileNavActive]);
 
   return (
     <>
@@ -44,30 +52,25 @@ const Navbar: React.FC = () => {
         </ul>
 
         <Hamburger isMobileNavActive={isMobileNavActive} setIsMobileNavActive={setIsMobileNavActive} />
-
-        <div
-          className={`mobile-nav${isMobileNavActive ? " enabled" : ""}`}
-          ref={mobileNavRef}
-          id="mobile-nav"
-        >
-          <div
-            className="overlay"
-            id="mobile-nav-overlay"
-            onClick={() => {
-              if (isMobileNavActive) setIsMobileNavActive((prev) => !prev);
-            }}
-          />
-          <ul id="mobile-nav-content">
-            {pages.map((page) => (
-              <li key={page.id} onClick={() => setIsMobileNavActive(false)}>
-                <Link href={page.slug}>
-                  <a className={`tab tab-${page.id}`}>{page.name}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
       </nav>
+
+      <div className={`mobile-nav${isMobileNavActive ? " enabled" : ""}`}>
+        <div
+          className="overlay"
+          onClick={() => {
+            if (isMobileNavActive) setIsMobileNavActive(false);
+          }}
+        />
+        <ul id="mobile-nav-content">
+          {pages.map((page) => (
+            <li key={page.id} onClick={() => setIsMobileNavActive(false)}>
+              <Link href={page.slug}>
+                <a className={`tab tab-${page.id}`}>{page.name}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <style jsx>{`
         nav {
@@ -114,6 +117,7 @@ const Navbar: React.FC = () => {
         .logo {
           cursor: pointer;
         }
+
         .logo img {
           max-width: 70px;
         }
@@ -156,31 +160,23 @@ const Navbar: React.FC = () => {
 
         .mobile-nav {
           position: fixed;
+          display: none;
+          transition: opacity var(--hamburgerTransitionTime);
           top: 0;
           left: 0;
-          width: 100vw;
-          height: 100vh;
-          display: none;
-          justify-content: center;
-          align-items: center;
+          height: 100%;
+          width: 100%;
           opacity: 0;
-          transition: opacity var(--hamburgerTransitionTime);
-          z-index: -1;
+          z-index: ${zIndex};
         }
 
         .mobile-nav.enabled {
           opacity: 100%;
-          z-index: 1;
         }
 
         .mobile-nav .overlay {
-          transition: all 0.2s;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          z-index: 0;
+          position: absolute;
+          inset: 0;
           background: #000;
           opacity: 70%;
         }
@@ -203,9 +199,15 @@ const Navbar: React.FC = () => {
           transition: all var(--hamburgerTransitionTime);
         }
 
+        .mobile-nav #mobile-nav-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+
         .mobile-nav #mobile-nav-content li a {
-          text-align: center;
-          display: block;
           font-size: 23px;
         }
 
@@ -215,7 +217,7 @@ const Navbar: React.FC = () => {
           }
 
           .mobile-nav {
-            display: flex;
+            display: block;
           }
         }
       `}</style>

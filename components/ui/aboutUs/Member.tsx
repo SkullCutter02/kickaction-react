@@ -247,6 +247,7 @@ const Member: React.FC<Props> = ({ member }) => {
             font-size: 14px;
             width: 100%;
             overflow: scroll;
+            padding: 20px;
           }
         }
       `}</style>
