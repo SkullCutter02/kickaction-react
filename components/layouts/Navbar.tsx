@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 
 import Hamburger from "../widgets/Hamburger";
 import pages from "../../data/pages";
 import NavbarTabs from "./NavbarTabs";
+import useNavHideWhenScroll from "../../hooks/useNavHideWhenScroll";
 
 const Navbar: React.FC = () => {
   const [currentTabValue, setCurrentTabValue] = useState<number>(1);
@@ -13,6 +13,9 @@ const Navbar: React.FC = () => {
 
   const router = useRouter();
   const path = router.asPath.split("/");
+
+  const navRef = useRef<HTMLDivElement>(null);
+  useNavHideWhenScroll(navRef);
 
   useEffect(() => {
     for (const page of pages) {
@@ -35,7 +38,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav>
+      <nav ref={navRef}>
         <div className="logo-container">
           <a href="./index.html" className="logo">
             <img src="/logo.png" alt="logo" />
@@ -77,6 +80,7 @@ const Navbar: React.FC = () => {
           position: fixed;
           width: 100%;
           box-shadow: 0 1px 10px 10px rgba(0, 0, 0, 0.3);
+          transition: top 0.2s;
         }
 
         .logo-container {
