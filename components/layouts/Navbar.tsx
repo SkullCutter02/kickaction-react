@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import Hamburger from "../widgets/Hamburger";
 import pages from "../../data/pages";
+import NavbarTabs from "./NavbarTabs";
 
 const Navbar: React.FC = () => {
   const [currentTabValue, setCurrentTabValue] = useState<number>(1);
@@ -42,13 +43,7 @@ const Navbar: React.FC = () => {
           <h3>KickAction</h3>
         </div>
         <ul id="nav-content">
-          {pages.map((page) => (
-            <li key={page.id}>
-              <Link href={page.slug}>
-                <a className={`tab tab-${page.id}`}>{page.name}</a>
-              </Link>
-            </li>
-          ))}
+          <NavbarTabs currentTabValue={currentTabValue} />
         </ul>
 
         <Hamburger isMobileNavActive={isMobileNavActive} setIsMobileNavActive={setIsMobileNavActive} />
@@ -62,13 +57,12 @@ const Navbar: React.FC = () => {
           }}
         />
         <ul id="mobile-nav-content">
-          {pages.map((page) => (
-            <li key={page.id} onClick={() => setIsMobileNavActive(false)}>
-              <Link href={page.slug}>
-                <a className={`tab tab-${page.id}`}>{page.name}</a>
-              </Link>
-            </li>
-          ))}
+          <NavbarTabs
+            currentTabValue={currentTabValue}
+            isMobile={true}
+            isMobileNavActive={isMobileNavActive}
+            setIsMobileNavActive={setIsMobileNavActive}
+          />
         </ul>
       </div>
 
@@ -107,55 +101,12 @@ const Navbar: React.FC = () => {
           height: 100%;
         }
 
-        #nav-content li {
-          margin-right: 30px;
-          height: 100%;
-          display: flex;
-          align-items: center;
-        }
-
         .logo {
           cursor: pointer;
         }
 
         .logo img {
           max-width: 70px;
-        }
-
-        .tab {
-          position: relative;
-        }
-
-        .tab${currentTabValue ? "-" + currentTabValue : ""} {
-          color: var(--primaryColor) !important;
-        }
-
-        .tab::after {
-          content: "";
-          position: absolute;
-          left: 50%;
-          top: 120%;
-          width: 100%;
-          height: 2px;
-          background-color: var(--primaryColor);
-          transform: translateX(-50%) scaleX(0);
-          transition: all 0.3s;
-        }
-
-        .tab:hover {
-          color: var(--primaryColor);
-          transition: all 0.3s;
-        }
-
-        .tab:hover::after {
-          transform: translateX(-50%) scaleX(1);
-          transition: all 0.3s;
-        }
-
-        li a {
-          font-weight: 500;
-          color: #fff;
-          font-size: 1.2rem;
         }
 
         .mobile-nav {
@@ -181,34 +132,12 @@ const Navbar: React.FC = () => {
           opacity: 70%;
         }
 
-        .mobile-nav #mobile-nav-content li:nth-child(odd) {
-          transform: translate(-100vw, 0);
-        }
-
-        .mobile-nav #mobile-nav-content li:nth-child(even) {
-          transform: translate(100vw, 0);
-        }
-
-        .mobile-nav.enabled #mobile-nav-content li {
-          transform: translate(0, 0);
-        }
-
-        .mobile-nav #mobile-nav-content li {
-          z-index: 2;
-          padding: 20px 0;
-          transition: all var(--hamburgerTransitionTime);
-        }
-
         .mobile-nav #mobile-nav-content {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           height: 100vh;
-        }
-
-        .mobile-nav #mobile-nav-content li a {
-          font-size: 23px;
         }
 
         @media screen and (max-width: 950px) {
