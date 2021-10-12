@@ -79,3 +79,11 @@ article img {
     width: 80% !important;
   }
 }
+
+footer svg path {
+  color: var(--tertiaryTextColor);
+}
+
+footer .footer-credits svg path {
+  color: var(--quaternaryTextColor);
+}
