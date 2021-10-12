@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
-import Aos from "aos";
+import React from "react";
 
 import partners from "../../../data/partners";
+import useAos from "../../../hooks/useAos";
 
 const Partners: React.FC = () => {
-  useEffect(() => {
-    Aos.init({
-      once: true,
-    });
-  }, []);
+  useAos({ once: true });
 
   return (
     <>
