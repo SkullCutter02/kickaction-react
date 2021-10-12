@@ -5,6 +5,7 @@ import Navbar from "../components/layouts/Navbar";
 
 import "../styles/global.css";
 import "../styles/variables.css";
+import "aos/dist/aos.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
