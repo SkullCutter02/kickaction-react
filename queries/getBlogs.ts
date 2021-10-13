@@ -1,8 +1,8 @@
 import HOST from "../constants/host";
 
 const getBlogs = async () => {
-  const data = await fetch(`${HOST}/blogs?_sort=Created_At:ASC`);
-  return data.json();
+  const res = await fetch(`${HOST}/blogs?_sort=Created_At:ASC`);
+  return res.json();
 };
 
 export default getBlogs;

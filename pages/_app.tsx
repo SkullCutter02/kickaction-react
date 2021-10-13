@@ -9,6 +9,7 @@ import Footer from "../components/layouts/Footer";
 
 import "../styles/global.css";
 import "../styles/variables.css";
+import "../styles/blog.css";
 
 import "aos/dist/aos.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";

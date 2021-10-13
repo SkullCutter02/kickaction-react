@@ -2,12 +2,12 @@ import React from "react";
 import { GetServerSideProps } from "next";
 import { dehydrate, QueryClient } from "react-query";
 
-import Hero from "../components/ui/shared/Hero";
-import Blogs from "../components/ui/blog/Blogs";
-import getBlogs from "../queries/getBlogs";
-import heroes from "../data/heroes";
+import Hero from "../../components/ui/shared/Hero";
+import Blogs from "../../components/ui/blog/Blogs";
+import getBlogs from "../../queries/getBlogs";
+import heroes from "../../data/heroes";
 
-const Blog: React.FC = () => {
+const BlogsPage: React.FC = () => {
   return (
     <>
       <Hero heroContent={heroes.blog} heroFileName={"blog-hero.png"} />
@@ -28,4 +28,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default Blog;
+export default BlogsPage;

@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { format, parseISO } from "date-fns";
+import Link from "next/link";
 
 import getBlogs from "../../../queries/getBlogs";
 import useAos from "../../../hooks/useAos";
@@ -14,10 +15,12 @@ const Blogs: React.FC = () => {
     <>
       <section className="blogs">
         {blogs.map((blog) => (
-          <article className="blog" key={"blog_" + blog.id} data-aos="fade-left">
-            <p className="blog-article-date">{format(parseISO(blog.created_at), "MMM. d, yyyy")}</p>
-            <p className="blog-article-title">{blog.title}</p>
-          </article>
+          <Link href={`/blog/${blog.id}`} key={"blog_" + blog.id}>
+            <article className="blog" data-aos={"fade-left"}>
+              <p className="blog-article-date">{format(parseISO(blog.created_at), "MMM. d, yyyy")}</p>
+              <p className="blog-article-title">{blog.title}</p>
+            </article>
+          </Link>
         ))}
       </section>
 
