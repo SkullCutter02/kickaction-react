@@ -97,6 +97,18 @@ const Videos: React.FC = () => {
         .thumbnail-desc {
           font-size: 0.8em;
         }
+
+        @media screen and (max-width: 1200px) {
+          .videos {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media screen and (max-width: 900px) {
+          .videos {
+            grid-template-columns: 1fr;
+          }
+        }
       `}</style>
     </>
   );
