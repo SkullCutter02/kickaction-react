@@ -16,16 +16,16 @@ const BlogsPage: React.FC = () => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const queryClient = new QueryClient();
-//
-//   await queryClient.prefetchQuery("blogs", getBlogs);
-//
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   };
-// };
+export const getServerSideProps: GetServerSideProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery("blogs", getBlogs);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 
 export default BlogsPage;
