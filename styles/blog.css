@@ -11,3 +11,8 @@
 .blog-body img {
   max-width: 100%;
 }
+
+.blog-body a {
+  text-decoration: underline;
+  color: #7eb8ff;
+}
