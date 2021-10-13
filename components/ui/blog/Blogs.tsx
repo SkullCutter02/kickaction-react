@@ -14,14 +14,14 @@ const Blogs: React.FC = () => {
   return (
     <>
       <section className="blogs">
-        {blogs.map((blog) => (
-          <Link href={`/blog/${blog.id}`} key={"blog_" + blog.id}>
-            <article className="blog" data-aos={"fade-left"}>
-              <p className="blog-article-date">{format(parseISO(blog.created_at), "MMM. d, yyyy")}</p>
-              <p className="blog-article-title">{blog.title}</p>
-            </article>
-          </Link>
-        ))}
+        {/*{blogs.map((blog) => (*/}
+        {/*  <Link href={`/blog/${blog.id}`} key={"blog_" + blog.id}>*/}
+        {/*    <article className="blog" data-aos={"fade-left"}>*/}
+        {/*      <p className="blog-article-date">{format(parseISO(blog.created_at), "MMM. d, yyyy")}</p>*/}
+        {/*      <p className="blog-article-title">{blog.title}</p>*/}
+        {/*    </article>*/}
+        {/*  </Link>*/}
+        {/*))}*/}
       </section>
 
       <style jsx>{`
