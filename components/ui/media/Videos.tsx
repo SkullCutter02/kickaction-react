@@ -1,16 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
+import Modal from "react-modal";
+import YouTube from "react-youtube";
 
 import getVideos from "../../../queries/getVideos";
 
 const Videos: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [videoId, setVideoId] = useState<string | null>(null);
+
   const { data: videos } = useQuery<IVideo[]>("videos", getVideos);
+
+  const openVideo = (videoId: string) => {
+    setVideoId(videoId);
+    setIsModalOpen(true);
+  };
 
   return (
     <>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        style={{
+          content: {
+            width: "60%",
+            height: "66%",
+            zIndex: 100000000,
+            background: "var(--modalColor)",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            border: "none",
+            cursor: "initial",
+            padding: "40px",
+          },
+          overlay: {
+            background: "rgba(0, 0, 0, 0.4)",
+            cursor: "pointer",
+          },
+        }}
+      >
+        <YouTube videoId={videoId} containerClassName="youtube-video-container" className="youtube-video" />
+      </Modal>
+
       <main className="videos">
         {videos.map((video) => (
-          <div className="video" key={"video_" + video.id}>
+          <div className="video" key={"video_" + video.id} onClick={() => openVideo(video.video_id)}>
             <div className="img-container">
               <img src={`https://i.ytimg.com/vi/${video.video_id}/hqdefault.jpg`} alt="" />
             </div>
