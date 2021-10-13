@@ -24,6 +24,11 @@ const heroes = {
     description:
       "To achieve equality one must see oneself as an autonomous person capable of controlling one’s destiny. Martial Arts provides the physical and spiritual tools to do this. ",
   },
+  media: {
+    title: "Media",
+    description:
+      "Learn martial arts techniques for free through the use of KickAction's online media resources.",
+  },
 };
 
 export default heroes;

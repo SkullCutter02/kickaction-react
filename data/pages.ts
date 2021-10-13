@@ -24,6 +24,11 @@ const pages: IPage[] = [
     slug: "impact",
     name: "Impact",
   },
+  {
+    id: 6,
+    slug: "media",
+    name: "Media",
+  },
 ];
 
 export default pages;
