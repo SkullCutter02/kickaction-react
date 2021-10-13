@@ -1,53 +1,25 @@
 import React from "react";
+import { useQuery } from "react-query";
+
+import getVideos from "../../../queries/getVideos";
 
 const Videos: React.FC = () => {
+  const { data: videos } = useQuery<IVideo[]>("videos", getVideos);
+
   return (
     <>
       <main className="videos">
-        <div className="video">
-          <div className="img-container">
-            <img src="https://i.ytimg.com/vi/xTOsVIvyLxY/hqdefault.jpg" alt="" />
+        {videos.map((video) => (
+          <div className="video" key={"video_" + video.id}>
+            <div className="img-container">
+              <img src={`https://i.ytimg.com/vi/${video.video_id}/hqdefault.jpg`} alt="" />
+            </div>
+            <div className="thumbnail-overlay">
+              <h1 className="thumbnail-title">{video.title}</h1>
+              <p className="thumbnail-desc">{video.description}</p>
+            </div>
           </div>
-          <div className="thumbnail-overlay">
-            <h1 className="thumbnail-title">Title 1</h1>
-            <p className="thumbnail-desc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, unde?
-            </p>
-          </div>
-        </div>
-        <div className="video">
-          <div className="img-container">
-            <img src="https://i.ytimg.com/vi/jjJX5XvkoSE/hqdefault.jpg" alt="" />
-          </div>
-          <div className="thumbnail-overlay">
-            <h1 className="thumbnail-title">Title 1</h1>
-            <p className="thumbnail-desc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, unde?
-            </p>
-          </div>
-        </div>
-        <div className="video">
-          <div className="img-container">
-            <img src="https://i.ytimg.com/vi/jjJX5XvkoSE/hqdefault.jpg" alt="" />
-          </div>
-          <div className="thumbnail-overlay">
-            <h1 className="thumbnail-title">Title 1</h1>
-            <p className="thumbnail-desc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, unde?
-            </p>
-          </div>
-        </div>
-        <div className="video">
-          <div className="img-container">
-            <img src="https://i.ytimg.com/vi/jjJX5XvkoSE/hqdefault.jpg" alt="" />
-          </div>
-          <div className="thumbnail-overlay">
-            <h1 className="thumbnail-title">Title 1</h1>
-            <p className="thumbnail-desc">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, unde?
-            </p>
-          </div>
-        </div>
+        ))}
       </main>
 
       <style jsx>{`
