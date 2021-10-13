@@ -28,7 +28,7 @@ const NavbarTabs: React.FC<Props> = ({
             }
           }}
         >
-          <Link href={page.slug}>
+          <Link href={`/${page.slug}`}>
             <a className={`tab tab-${page.id}`}>{page.name}</a>
           </Link>
         </li>
