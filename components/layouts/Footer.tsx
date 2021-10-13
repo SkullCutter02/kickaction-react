@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
+import pages from "../../data/pages";
+
 const Footer: React.FC = () => {
   return (
     <>
@@ -31,21 +33,11 @@ const Footer: React.FC = () => {
           </div>
           <div className="footer-links footer-info">
             <h3>Quick Links</h3>
-            <Link href={"/"}>
-              <a>Home</a>
-            </Link>
-            <Link href={"/about-us"}>
-              <a>About Us</a>
-            </Link>
-            <Link href={"/our-partners"}>
-              <a>Our Partners</a>
-            </Link>
-            <Link href={"/blog"}>
-              <a>Blog</a>
-            </Link>
-            <Link href={"/impact"}>
-              <a>Impact</a>
-            </Link>
+            {pages.map((page) => (
+              <Link href={`/${page.slug}`} key={page.id}>
+                <a>{page.name}</a>
+              </Link>
+            ))}
           </div>
           <div className="footer-contact-us footer-info">
             <h3>Contact Us</h3>
