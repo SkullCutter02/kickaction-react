@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Hydrate state={pageProps.dehydratedState}>
           <Head>
             <title>Kick Action</title>
+            <link rel="shortcut icon" href={"/favicon.ico"} />
           </Head>
           <Navbar />
           <Component {...pageProps} />
