@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import Modal from "react-modal";
 import YouTube from "react-youtube";
 
+import Modal from "../../widgets/Modal";
 import getVideos from "../../../queries/getVideos";
 
 const Videos: React.FC = () => {
@@ -18,29 +18,7 @@ const Videos: React.FC = () => {
 
   return (
     <>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        style={{
-          content: {
-            width: "60%",
-            height: "66%",
-            zIndex: 100000000,
-            background: "var(--modalColor)",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            border: "none",
-            cursor: "initial",
-            padding: "40px",
-          },
-          overlay: {
-            background: "rgba(0, 0, 0, 0.4)",
-            cursor: "pointer",
-          },
-        }}
-      >
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} padding={"40px"}>
         <YouTube videoId={videoId} containerClassName="youtube-video-container" className="youtube-video" />
       </Modal>
 

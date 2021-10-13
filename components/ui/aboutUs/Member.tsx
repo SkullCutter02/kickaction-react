@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
+
+import Modal from "../../widgets/Modal";
 
 interface Props {
   member: IMember;
@@ -10,29 +11,7 @@ const Member: React.FC<Props> = ({ member }) => {
 
   return (
     <>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
-        closeTimeoutMS={400}
-        style={{
-          content: {
-            transform: "translate(-50%, -50%)",
-            width: "60%",
-            height: "66%",
-            zIndex: 100000000000,
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            background: "var(--modalColor)",
-            border: "none",
-            cursor: "initial",
-          },
-          overlay: {
-            background: "rgba(0, 0, 0, 0.4)",
-            cursor: "pointer",
-          },
-        }}
-      >
+      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} padding={"20px"}>
         <div className={`member-modal-content`}>
           <img className="member-modal-content-img" src={`/members/member_${member.id}.png`} alt="hero" />
           <div className="close-btn" onClick={() => setIsModalOpen(false)}>
