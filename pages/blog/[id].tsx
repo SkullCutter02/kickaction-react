@@ -3,6 +3,7 @@ import { GetServerSideProps } from "next";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { useRouter } from "next/router";
 import ReactMarkdown from "react-markdown";
+import Layout from "../../components/layouts/Layout";
 
 import getBlog from "../../queries/getBlog";
 import { format, parseISO } from "date-fns";
@@ -15,11 +16,13 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
-      <main>
-        <h1 className="blog-title">{blog.title}</h1>
-        <p className="blog-date">{format(parseISO(blog.created_at), "MMM. d, yyyy")}</p>
-        <ReactMarkdown className="blog-body" children={blog.body} />
-      </main>
+      <Layout>
+        <main>
+          <h1 className="blog-title">{blog.title}</h1>
+          <p className="blog-date">{format(parseISO(blog.created_at), "MMM. d, yyyy")}</p>
+          <ReactMarkdown className="blog-body" children={blog.body} />
+        </main>
+      </Layout>
 
       <style jsx>{`
         main {

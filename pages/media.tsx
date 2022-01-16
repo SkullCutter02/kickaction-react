@@ -6,12 +6,15 @@ import Hero from "../components/ui/shared/Hero";
 import Videos from "../components/ui/media/Videos";
 import heroes from "../data/heroes";
 import getVideos from "../queries/getVideos";
+import Layout from "../components/layouts/Layout";
 
 const MediasPage: React.FC = () => {
   return (
     <>
-      <Hero heroFileName={"media-hero.jpg"} heroContent={heroes.media} />
-      <Videos />
+      <Layout>
+        <Hero heroFileName={"media-hero.jpg"} heroContent={heroes.media} />
+        <Videos />
+      </Layout>
     </>
   );
 };

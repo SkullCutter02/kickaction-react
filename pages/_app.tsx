@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import type { AppProps } from "next/app";
 import { useState } from "react";
 import Head from "next/head";
+import { AnimatePresence } from "framer-motion";
 
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
@@ -26,7 +27,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             <link rel="shortcut icon" href={"/images/favicon.ico"} />
           </Head>
           <Navbar />
-          <Component {...pageProps} />
+          <AnimatePresence exitBeforeEnter initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+            <Component {...pageProps} />
+          </AnimatePresence>
           <Footer />
         </Hydrate>
         <ReactQueryDevtools />
