@@ -65,6 +65,7 @@ const Impact: React.FC = () => {
 
         article p {
           text-align: justify;
+          line-height: 1.5em;
         }
 
         article img {

@@ -21,11 +21,6 @@ const pages: IPage[] = [
   },
   {
     id: 5,
-    slug: "impact",
-    name: "Impact",
-  },
-  {
-    id: 6,
     slug: "media",
     name: "Media",
   },

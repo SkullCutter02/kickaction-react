@@ -4,6 +4,7 @@ import Hero from "../components/ui/shared/Hero";
 import OurMission from "../components/ui/home/OurMission";
 import Sdgs from "../components/ui/home/Sdgs";
 import heroes from "../data/heroes";
+import Impact from "../components/ui/impact/Impact";
 
 const HomePage: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage: React.FC = () => {
       <Hero isHeroVideo={true} heroFileName={"index-hero.mp4"} isHomePage={true} heroContent={heroes.home} />
       <OurMission />
       <Sdgs />
+      <Impact />
     </>
   );
 };
