@@ -11,6 +11,7 @@
 
 body {
   background: var(--bg);
+  overflow-x: hidden;
 }
 
 a {
@@ -26,7 +27,8 @@ ul {
 }
 
 section.home,
-section.blogs {
+section.blogs,
+section.cirriculum {
   width: 85%;
   margin: 70px auto;
 }

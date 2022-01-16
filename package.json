@@ -21,6 +21,7 @@
     "react-markdown": "^7.0.1",
     "react-modal": "^3.14.3",
     "react-query": "^3.26.0",
+    "react-table": "^7.7.0",
     "react-youtube": "^7.13.1"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "@types/date-fns": "^2.6.0",
     "@types/react": "^17.0.27",
     "@types/react-modal": "^3.12.1",
+    "@types/react-table": "^7.7.9",
     "typescript": "^4.4.3"
   }
 }

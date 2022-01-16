@@ -29,6 +29,10 @@ const heroes = {
     description:
       "Learn martial arts techniques for free through the use of KickAction's online media resources.",
   },
+  cirriculum: {
+    title: "Cirriculum",
+    description: "Here's the cirriculum that our participants follow.",
+  },
 };
 
 export default heroes;
