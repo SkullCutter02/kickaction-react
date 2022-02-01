@@ -86,6 +86,13 @@ const members: IMember[] = [
     imageOffsetHome: "center -30px",
     imageOffsetModal: "center -60px",
   },
+  {
+    id: 12,
+    name: "Helen Song",
+    role: "Master Instructor",
+    description:
+      "Hi everyone :) I’m Helen and I’m 15 years old. I’ve been learning taekwondo since I was 6, and I’m currently black belt 3rd dan (3rd degree). Apart from taekwondo, I also enjoy pilates, chemistry, spending time with my friends, and listening to music. Through being an instructor for Kick Action, I hope to be able to help others with my passion and knowledge in martial arts!",
+  },
 ];
 
 export default members;
